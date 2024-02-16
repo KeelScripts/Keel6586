@@ -1,368 +1,424 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
-
-local Window = Rayfield:CreateWindow({
-   Name = "KeelHub",
-   LoadingTitle = "KeelHub",
-   LoadingSubtitle = "by KEEL",
-   ConfigurationSaving = {
-      Enabled = true,
-      FolderName = nil, -- Create a custom folder for your hub/game
-      FileName = "Keel Hub"
-   },
-   Discord = {
-      Enabled = false,
-      Invite = "noinvitelink", -- The Discord invite code, do not include discord.gg/. E.g. discord.gg/ABCD would be ABCD
-      RememberJoins = true -- Set this to false to make them join the discord every time they load it up
-   },
-   KeySystem = true, -- Set this to true to use our key system
-   KeySettings = {
-      Title = "KeelHub Key System",
-      Subtitle = "Key System",
-      Note = "Key in discord",
-      FileName = "KeelHub", -- It is recommended to use something unique as other scripts using Rayfield may overwrite your key file
-      SaveKey = false, -- The user's key will be saved, but if you change the key, they will be unable to use your script
-      GrabKeyFromSite = true, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
-      Key = {"https://pastebin.com/raw/Zk7VMqK9"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
-   }
-})
-
-local MainTab = Window:CreateTab("Home", nil) -- Title, Image
-local MainSection = MainTab:CreateSection("🏠Home")
-
-Rayfield:Notify({
-   Title = "you have executed this script",
-   Content = "This is a very cool script🆒",
-   Image = 4483362458,
-   Actions = { -- Notification Buttons
-      Ignore = {
-         Name = "Okay!",
-         Callback = function()
-         print("The user tapped Okay!")
-      end
-   },
-},
-})
-
-local Button = MainTab:CreateButton({
-   Name = "SlapBattles",
-   Callback = function()
-        loadstring(game:HttpGet(("https://raw.githubusercontent.com/ionlyusegithubformcmods/1-Line-Scripts/main/Slap%20Battles")))()
-   end,
-})
-
-local Button = MainTab:CreateButton({
-   Name = "Da Hood Swag Mode",
-   Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/lerkermer/lua-projects/master/SwagModeV002"))()
-   end,
-})
-
-local Button = MainTab:CreateButton({
-   Name = "ScriptHub",
-   Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/scripthubekitten/SCRIPTHUBV2/main/SCRIPTHUBV2", true))()
-   end,
-})
-
-local Button = MainTab:CreateButton({
-   Name = "NukeHub",
-   Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/NukeVsCity/TheALLHACKLoader/main/NukeLoader"))()
-   end,
-})
-
-    local Button = MainTab:CreateButton({
-   Name = "Break in 1",
-   Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/RubyBoo4life/break-in-v1/main/.gitignore"))();
-   end,
-})
-
-local Button = MainTab:CreateButton({
-   Name = "Break in 2",
-   Callback = function()
-        loadstring(game:HttpGet("https://freenote.biz/raw/ScmsS7SwTW",true))()
-   end,
-})
-
-    local Button = MainTab:CreateButton({
-   Name = "mm2 Key - lunarhubnicebye",
-   Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/vwSaraa/LunarHub/main/mm2"))()
-   end,
-})
-
-local Button = MainTab:CreateButton({
-   Name = "Blade ball",
-   Callback = function()  
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/3345-c-a-t-s-u-s/-beta-/main/AutoParry.lua"))()
-   end,
-})
-
-local Button = MainTab:CreateButton({
-   Name = "Build a boat",
-   Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/Deni210/BABFT/main/Ruby%20Hub", true))()
-   end,
-})
-
-local Button = MainTab:CreateButton({
-   Name = "Adopt Me",
-   Callback = function()
-        loadstring(game:HttpGet(('https://raw.githubusercontent.com/rblxscriptsnet/unfair/main/rblxhub.lua'),true))()
-   end,
-})
-
-local OtherTab = Window:CreateTab("Others", nil) -- Title, Image
-local Section = OtherTab:CreateSection("Other scripts")
     
-local Button = OtherTab:CreateButton({
-   Name = "Shadow Box",
-   Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/imwifi/1FO/main/main.lua"))()
-   end,
-})
-
-local Button = OtherTab:CreateButton({
-   Name = "BrookHaven",
-   Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/IceMael7/NewIceHub/main/Brookhaven"))()
-   end,
-})
-
-local Button = OtherTab:CreateButton({
-   Name = "Blox Fruits",
-   Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/Omgshit/Scripts/main/MainLoader.lua"))()
-   end,
-})
-
-local Button = OtherTab:CreateButton({
-   Name = "fe zombie animation",
-   Callback = function()
-        while true do
-local Animate = game.Players.LocalPlayer.Character.Animate
-Animate.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=616163682"
-game.Players.LocalPlayer.Character.Humanoid.Jump = false
-wait(1)
-end
-   end,
-})
-
-local Button = OtherTab:CreateButton({
-Name = "Execute scripts in chat",
-   Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/zephyr10101/chat-executor/main/chat-executor",true))()
-   end,
-})
-
-local Button = OtherTab:CreateButton({
-   Name = "Natural Disaster",
-   Callback = function()
-        loadstring(game:HttpGet'https://raw.githubusercontent.com/RunDTM/ZeeroxHub/main/Loader.lua')()
-   end,
-})
-
-local Button = OtherTab:CreateButton({
-   Name = "Broken Bones IV",
-   Callback = function()
-        loadstring(game:HttpGet('https://raw.githubusercontent.com/BoaHacker/ROBLOX/main/cheat', true))()
-   end,
-})
-
-local Button = OtherTab:CreateButton({
-   Name = "Pls Donate",
-   Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/2dgeneralspam1/scripts-and-stuff/master/scripts/LoadstringypVvhJBq4QNz", true))()
-   end,
-})
-
-local Button = OtherTab:CreateButton({
-   Name = "Field trip Z",
-   Callback = function()
-        loadstring(game:HttpGet('https://raw.githubusercontent.com/1201for/V.G-Hub/main/V.Ghub'))()
-  end,
-})
-
-local Button = OtherTab:CreateButton({
-   Name = "areaphobia",
-   Callback = function()
-        loadstring(game:HttpGet(('https://raw.githubusercontent.com/E240-h/apgui/main/n'),true))()
-   end,
-})
-
-local Button = OtherTab:CreateButton({
-   Name = "Funky Friday AutoPlay",
-   Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/wally-rblx/funky-friday-autoplay/main/main.lua",true))()
-   end,
-})
-
-local MiscTab = Window:CreateTab("Misc", nil) -- Title, Image
-    local Section = MiscTab:CreateSection("Misc🎲")
-
-local Button = MiscTab:CreateButton({
-   Name = "Infinite yield",
-   Callback = function()
-        loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
-   end,
-})
-
-local Button = MiscTab:CreateButton({
-   Name = "discord.gg/72xNeKXd3C",
-   Callback = function()
-   -- The function that takes place when the button is pressed
-   end,
-})
-
-local ScriptsTab = Window:CreateTab("Scripts", nil) -- Title, Image
-local Section = ScriptsTab:CreateSection("GoodScripts")
-
+    local Window = Rayfield:CreateWindow({
+       Name = "KeelHub",
+       LoadingTitle = "KeelHub",
+       LoadingSubtitle = "by KEEL",
+       ConfigurationSaving = {
+          Enabled = true,
+          FolderName = nil, -- Create a custom folder for your hub/game
+          FileName = "Keel Hub"
+       },
+       Discord = {
+          Enabled = false,
+          Invite = "noinvitelink", -- The Discord invite code, do not include discord.gg/. E.g. discord.gg/ABCD would be ABCD
+          RememberJoins = true -- Set this to false to make them join the discord every time they load it up
+       },
+       KeySystem = true, -- Set this to true to use our key system
+       KeySettings = {
+          Title = "KeelHub Key System",
+          Subtitle = "Key System",
+          Note = "Key in discord",
+          FileName = "KeelHub", -- It is recommended to use something unique as other scripts using Rayfield may overwrite your key file
+          SaveKey = false, -- The user's key will be saved, but if you change the key, they will be unable to use your script
+          GrabKeyFromSite = true, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
+          Key = {"https://pastebin.com/raw/Zk7VMqK9"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
+       }
+    })
+    
+    local MainTab = Window:CreateTab("Home", nil) -- Title, Image
+    local MainSection = MainTab:CreateSection("🏠Home")
+    
+    Rayfield:Notify({
+       Title = "you have executed this script",
+       Content = "This is a very cool script🆒",
+       Image = 4483362458,
+       Actions = { -- Notification Buttons
+          Ignore = {
+             Name = "Okay!",
+             Callback = function()
+             print("The user tapped Okay!")
+          end
+       },
+    },
+    })
+    
+    local Button = MainTab:CreateButton({
+       Name = "SlapBattles",
+       Callback = function()
+            loadstring(game:HttpGet(("https://raw.githubusercontent.com/ionlyusegithubformcmods/1-Line-Scripts/main/Slap%20Battles")))()
+       end,
+    })
+    
+    local Button = MainTab:CreateButton({
+       Name = "Da Hood Swag Mode",
+       Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/lerkermer/lua-projects/master/SwagModeV002"))()
+       end,
+    })
+    
+    local Button = MainTab:CreateButton({
+       Name = "ScriptHub",
+       Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/scripthubekitten/SCRIPTHUBV2/main/SCRIPTHUBV2", true))()
+       end,
+    })
+    
+    local Button = MainTab:CreateButton({
+       Name = "NukeHub",
+       Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/NukeVsCity/TheALLHACKLoader/main/NukeLoader"))()
+       end,
+    })
+    
+        local Button = MainTab:CreateButton({
+       Name = "Break in 1",
+       Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/RubyBoo4life/break-in-v1/main/.gitignore"))();
+       end,
+    })
+    
+    local Button = MainTab:CreateButton({
+       Name = "Break in 2",
+       Callback = function()
+            loadstring(game:HttpGet("https://freenote.biz/raw/ScmsS7SwTW",true))()
+       end,
+    })
+    
+        local Button = MainTab:CreateButton({
+       Name = "mm2 Key - lunarhubnicebye",
+       Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/vwSaraa/LunarHub/main/mm2"))()
+       end,
+    })
+    
+    local Button = MainTab:CreateButton({
+       Name = "Blade ball",
+       Callback = function()  
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/3345-c-a-t-s-u-s/-beta-/main/AutoParry.lua"))()
+       end,
+    })
+    
+    local Button = MainTab:CreateButton({
+       Name = "Build a boat",
+       Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/Deni210/BABFT/main/Ruby%20Hub", true))()
+       end,
+    })
+    
+    local Button = MainTab:CreateButton({
+       Name = "Adopt Me",
+       Callback = function()
+            loadstring(game:HttpGet(('https://raw.githubusercontent.com/rblxscriptsnet/unfair/main/rblxhub.lua'),true))()
+       end,
+    })
+    
+    local OtherTab = Window:CreateTab("Others", nil) -- Title, Image
+    local Section = OtherTab:CreateSection("Other scripts")
+        
+    local Button = OtherTab:CreateButton({
+       Name = "Shadow Box",
+       Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/imwifi/1FO/main/main.lua"))()
+       end,
+    })
+    
+    local Button = OtherTab:CreateButton({
+       Name = "BrookHaven",
+       Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/IceMael7/NewIceHub/main/Brookhaven"))()
+       end,
+    })
+    
+    local Button = OtherTab:CreateButton({
+       Name = "Blox Fruits",
+       Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/Omgshit/Scripts/main/MainLoader.lua"))()
+       end,
+    })
+    
+    local Button = OtherTab:CreateButton({
+       Name = "fe zombie animation",
+       Callback = function()
+            while true do
+    local Animate = game.Players.LocalPlayer.Character.Animate
+    Animate.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=616163682"
+    game.Players.LocalPlayer.Character.Humanoid.Jump = false
+    wait(1)
+    end
+       end,
+    })
+    
+    local Button = OtherTab:CreateButton({
+    Name = "Execute scripts in chat",
+       Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/zephyr10101/chat-executor/main/chat-executor",true))()
+       end,
+    })
+    
+    local Button = OtherTab:CreateButton({
+       Name = "Natural Disaster",
+       Callback = function()
+            loadstring(game:HttpGet'https://raw.githubusercontent.com/RunDTM/ZeeroxHub/main/Loader.lua')()
+       end,
+    })
+    
+    local Button = OtherTab:CreateButton({
+       Name = "Broken Bones IV",
+       Callback = function()
+            loadstring(game:HttpGet('https://raw.githubusercontent.com/BoaHacker/ROBLOX/main/cheat', true))()
+       end,
+    })
+    
+    local Button = OtherTab:CreateButton({
+       Name = "Pls Donate",
+       Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/2dgeneralspam1/scripts-and-stuff/master/scripts/LoadstringypVvhJBq4QNz", true))()
+       end,
+    })
+    
+    local Button = OtherTab:CreateButton({
+       Name = "Field trip Z",
+       Callback = function()
+            loadstring(game:HttpGet('https://raw.githubusercontent.com/1201for/V.G-Hub/main/V.Ghub'))()
+      end,
+    })
+    
+    local Button = OtherTab:CreateButton({
+       Name = "areaphobia",
+       Callback = function()
+            loadstring(game:HttpGet(('https://raw.githubusercontent.com/E240-h/apgui/main/n'),true))()
+       end,
+    })
+    
+    local Button = OtherTab:CreateButton({
+       Name = "Funky Friday AutoPlay",
+       Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/wally-rblx/funky-friday-autoplay/main/main.lua",true))()
+       end,
+    })
+    
+    local MiscTab = Window:CreateTab("Misc", nil) -- Title, Image
+        local Section = MiscTab:CreateSection("Misc🎲")
+    
+    local Button = MiscTab:CreateButton({
+       Name = "Infinite yield",
+       Callback = function()
+            loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+       end,
+    })
+    
+    local Button = MiscTab:CreateButton({
+       Name = "discord.gg/72xNeKXd3C",
+       Callback = function()
+       -- The function that takes place when the button is pressed
+       end,
+    })
+    
+    local ScriptsTab = Window:CreateTab("Scripts", nil) -- Title, Image
+    local Section = ScriptsTab:CreateSection("GoodScripts")
+    
+        local Button = ScriptsTab:CreateButton({
+       Name = "ARSENAL OP",
+       Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/YellowGreg/Loadstring/main/arsenal4.lua"))()
+       end,
+    })
+    
     local Button = ScriptsTab:CreateButton({
-   Name = "ARSENAL OP",
-   Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/YellowGreg/Loadstring/main/arsenal4.lua"))()
-   end,
-})
-
-local Button = ScriptsTab:CreateButton({
-   Name = "Fake Macro🔥",
-   Callback = function()
-        loadstring(game:HttpGetAsync("https://pastebin.com/raw/XiqsUXHj", true))()
-   end,
-})
-
-local Button = ScriptsTab:CreateButton({
-   Name = "Synapse X",
-   Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/AZYsGithub/Chillz-s-scripts/main/Synapse-X-Remake.lua"))()
-   end,
-})
-
-local Button = ScriptsTab:CreateButton({
-   Name = "Hood Modded",
-   Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/scripthubekitten/scripthubcyandotV2.1/main/scripthubcyandotV2.1", true))()
-   end,
-})
-
-local Button = ScriptsTab:CreateButton({
-   Name = "Script Scarlet V2",
-   Callback = function()
-        loadstring(game:HttpGet("https://pastecode.dev/raw/8TcNwKmv1t/script%20Scarlet%20v2"))()
-   end,
-})
-
-local Button = ScriptsTab:CreateButton({
-   Name = "Doors",
-   Callback = function()
-        loadstring(game:HttpGet(("https://pastebin.com/raw/9QPGnLx6"),true))()
-   end,
-})
-
-local Button = ScriptsTab:CreateButton({
-   Name = "Blox Fruits",
-   Callback = function()
-        loadstring(game:HttpGet("https://pastecode.dev/raw/22F0JoxR0L/blox%20fruit%20scarlet"))()
-   end,
-})
-
-local Button = ScriptsTab:CreateButton({
-   Name = "Piggy",
-   Callback = function()
-        loadstring(game:HttpGet(('https://raw.githubusercontent.com/lolpoppyus/Roblox-Lua/master/Piggy'),true))()
-   end,
-})
-
-local Button = ScriptsTab:CreateButton({
-   Name = "Whacky Wizards",
-   Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/ToraIsMe2/ToraIsMe2/main/0wacky", true))()
-   end,
-})
-
-local Button = ScriptsTab:CreateButton({
-   Name = "The Strongest BattleGrounds",
-   Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/Nicuse/RobloxScripts/main/SaitamaBattlegrounds.lua"))()
-   end,
-})
-
-local Button = ScriptsTab:CreateButton({
-   Name = "Bee Swarm",
-   Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/not-xen0n/Lua/main/bsstrainer.lua"))()
-   end,
-})
-
-local Button = ScriptsTab:CreateButton({
-   Name = "RagdollEngineGUI",
-   Callback = function()
-        loadstring(game:HttpGet(('https://gitlab.com/Tsuniox/lua-stuff/-/raw/master/RagdollEngineGUI.lua'),true))()
-   end,
-})
-
-local Button = ScriptsTab:CreateButton({
-   Name = "Evade Key:eqRYZmvsefMPfHeEth2UIn5xumasm33UPbqQ2V7D99GgzRGtzVxI3yPbsVhYa74C",
-   Callback = function()
-        loadstring(game:HttpGet('https://raw.githubusercontent.com/zReal-King/Evade/main/Main.lua'))()
-   end,
-})
-
-local Button = ScriptsTab:CreateButton({
-   Name = "BedWars",
-   Callback = function()
-        loadstring(game:HttpGet("https://scriptblox.com/raw/Vape-V4-For-Roblox_316"))()
-   end,
-})
-
-local Button = ScriptsTab:CreateButton({
-   Name = "Blade ball",
-   Callback = function()
-        loadstring(game:HttpGet("https://shz.al/~Fujibladeball"))()
-   end,
-})
-
-local Button = ScriptsTab:CreateButton({
-   Name = "Blox fruits",
-   Callback = function()
-       loadstring(game:HttpGet("https://shz.al/~Bountyscriptbloxfruits"))()
-   end,
-})
-
-local Button = ScriptsTab:CreateButton({
-   Name = "Blox Fruits",
-   Callback = function()
-        loadstring(game:HttpGet("https://shz.al/~Omgbloxfruits"))()
-   end,
-})
-local Button = ScriptsTab:CreateButton({
-   Name = "Strongman simulator",
-   Callback = function()
-        loadstring(game:HttpGet('https://raw.githubusercontent.com/hngamingroblox/scripts/main/strongman%20simulator'))()
-   end,
-})
-
-local Button = ScriptsTab:CreateButton({
-   Name = "DOORS",
-   Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/GamingScripter/Darkrai-X/main/Games/Doors"))()
-   end,
-})
-
-local Button = ScriptsTab:CreateButton({
-   Name = "Fruit battleGrounds",
-   Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/xtrey10x/xtrey10x-hub/main/FruitBattlegrounds"))()
-   end,
-})
-
-local GoodscriptsTab = Window:CreateTab("good scripts", nil) -- Title, Image
-local Section = GoodscriptsTab:CreateSection("good scripts")
-
-local Button = GoodscriptsTab:CreateButton({
-   Name = "Fruit notifier",
-   Callback = function()
-        loadstring(game:HttpGet("https://github.com/euyogi/Prototipo-YogiNotificadorFruta/raw/main/YogiNotificadorFruta.lua"))()
-   end,
-})
+       Name = "Fake Macro🔥",
+       Callback = function()
+            loadstring(game:HttpGetAsync("https://pastebin.com/raw/XiqsUXHj", true))()
+       end,
+    })
+    
+    local Button = ScriptsTab:CreateButton({
+       Name = "Synapse X",
+       Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/AZYsGithub/Chillz-s-scripts/main/Synapse-X-Remake.lua"))()
+       end,
+    })
+    
+    local Button = ScriptsTab:CreateButton({
+       Name = "Hood Modded",
+       Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/scripthubekitten/scripthubcyandotV2.1/main/scripthubcyandotV2.1", true))()
+       end,
+    })
+    
+    local Button = ScriptsTab:CreateButton({
+       Name = "Script Scarlet V2",
+       Callback = function()
+            loadstring(game:HttpGet("https://pastecode.dev/raw/8TcNwKmv1t/script%20Scarlet%20v2"))()
+       end,
+    })
+    
+    local Button = ScriptsTab:CreateButton({
+       Name = "Doors",
+       Callback = function()
+            loadstring(game:HttpGet(("https://pastebin.com/raw/9QPGnLx6"),true))()
+       end,
+    })
+    
+    local Button = ScriptsTab:CreateButton({
+       Name = "Blox Fruits",
+       Callback = function()
+            loadstring(game:HttpGet("https://pastecode.dev/raw/22F0JoxR0L/blox%20fruit%20scarlet"))()
+       end,
+    })
+    
+    local Button = ScriptsTab:CreateButton({
+       Name = "Piggy",
+       Callback = function()
+            loadstring(game:HttpGet(('https://raw.githubusercontent.com/lolpoppyus/Roblox-Lua/master/Piggy'),true))()
+       end,
+    })
+    
+    local Button = ScriptsTab:CreateButton({
+       Name = "Whacky Wizards",
+       Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/ToraIsMe2/ToraIsMe2/main/0wacky", true))()
+       end,
+    })
+    
+    local Button = ScriptsTab:CreateButton({
+       Name = "The Strongest BattleGrounds",
+       Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/Nicuse/RobloxScripts/main/SaitamaBattlegrounds.lua"))()
+       end,
+    })
+    
+    local Button = ScriptsTab:CreateButton({
+       Name = "Bee Swarm",
+       Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/not-xen0n/Lua/main/bsstrainer.lua"))()
+       end,
+    })
+    
+    local Button = ScriptsTab:CreateButton({
+       Name = "RagdollEngineGUI",
+       Callback = function()
+            loadstring(game:HttpGet(('https://gitlab.com/Tsuniox/lua-stuff/-/raw/master/RagdollEngineGUI.lua'),true))()
+       end,
+    })
+    
+    local Button = ScriptsTab:CreateButton({
+       Name = "Evade Key:eqRYZmvsefMPfHeEth2UIn5xumasm33UPbqQ2V7D99GgzRGtzVxI3yPbsVhYa74C",
+       Callback = function()
+            loadstring(game:HttpGet('https://raw.githubusercontent.com/zReal-King/Evade/main/Main.lua'))()
+       end,
+    })
+    
+    local Button = ScriptsTab:CreateButton({
+       Name = "BedWars",
+       Callback = function()
+            loadstring(game:HttpGet("https://scriptblox.com/raw/Vape-V4-For-Roblox_316"))()
+       end,
+    })
+    
+    local Button = ScriptsTab:CreateButton({
+       Name = "Blade ball",
+       Callback = function()
+            loadstring(game:HttpGet("https://shz.al/~Fujibladeball"))()
+       end,
+    })
+    
+    local Button = ScriptsTab:CreateButton({
+       Name = "Blox fruits",
+       Callback = function()
+           loadstring(game:HttpGet("https://shz.al/~Bountyscriptbloxfruits"))()
+       end,
+    })
+    
+    local Button = ScriptsTab:CreateButton({
+       Name = "Blox Fruits",
+       Callback = function()
+            loadstring(game:HttpGet("https://shz.al/~Omgbloxfruits"))()
+       end,
+    })
+    local Button = ScriptsTab:CreateButton({
+       Name = "Strongman simulator",
+       Callback = function()
+            loadstring(game:HttpGet('https://raw.githubusercontent.com/hngamingroblox/scripts/main/strongman%20simulator'))()
+       end,
+    })
+    
+    local Button = ScriptsTab:CreateButton({
+       Name = "DOORS",
+       Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/GamingScripter/Darkrai-X/main/Games/Doors"))()
+       end,
+    })
+    
+    local Button = ScriptsTab:CreateButton({
+       Name = "Fruit battleGrounds",
+       Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/xtrey10x/xtrey10x-hub/main/FruitBattlegrounds"))()
+       end,
+    })
+    
+    local GoodscriptsTab = Window:CreateTab("good scripts", nil) -- Title, Image
+    local Section = GoodscriptsTab:CreateSection("good scripts")
+    
+    local Button = GoodscriptsTab:CreateButton({
+       Name = "scriptHub",
+       Callback = function()
+            loadstring(game:HttpGet("https://pastebin.com/raw/18ji1xzk"))();
+       end,
+    })
+    
+    local Button = GoodscriptsTab:CreateButton({
+       Name = "Natural Disaster",
+       Callback = function()
+            loadstring(game:HttpGet'https://raw.githubusercontent.com/RunDTM/ZeeroxHub/main/Loader.lua')()
+       end,
+    })
+    
+    local Button = GoodscriptsTab:CreateButton({
+       Name = "ohio.",
+       Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/scriptpastebin/raw/main/AlphaOhio"))()
+       end,
+    })
+    
+    local Button = GoodscriptsTab:CreateButton({
+       Name = "Starving Artist",
+       Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/itsnoctural/Utilities/main/Closed/StarvingArtist.lua"))()
+       end,
+    })
+    
+    local Button = GoodscriptsTab:CreateButton({
+       Name = "pet sim 99",
+       Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/H4k4rr/iloveyou/main/PS99"))()
+       end,
+    })
+    
+    local Button = GoodscriptsTab:CreateButton({
+       Name = "Flicker",
+       Callback = function()
+            loadstring(game:HttpGet(('https://pastebin.com/raw/dxwn1Hvz'),true))()
+       end,
+    })
+    
+    local Button = GoodscriptsTab:CreateButton({
+       Name = "Prison Life",
+       Callback = function()
+            loadstring(game:HttpGet("https://pastebin.com/raw/mHfK0Xk4", true))()
+       end,
+    })
+    
+    local Button = GoodscriptsTab:CreateButton({
+       Name = "The Mimic key ThankFor5kOnYoutubeAndDiscord",
+       Callback = function()
+            loadstring(game:HttpGet"https://raw.githubusercontent.com/CheapeeWastaken/Lazium/main/TheMain")()
+       end,
+    })
+    
+    local Button = GoodscriptsTab:CreateButton({
+       Name = "DestructionSim",
+       Callback = function()       
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/FadeRemix/RND-Games/main/DestructionSim.lua"))()
+       end,
+    })
