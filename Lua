@@ -1,4 +1,4 @@
-local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+    local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
     
     local Window = Rayfield:CreateWindow({
        Name = "KeelHub",
@@ -410,7 +410,7 @@ local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
     })
     
     local Button = GoodscriptsTab:CreateButton({
-       Name = "The Mimic key ThankFor5kOnYoutubeAndDiscord",
+       Name = "ScriptHub",
        Callback = function()
             loadstring(game:HttpGet"https://raw.githubusercontent.com/CheapeeWastaken/Lazium/main/TheMain")()
        end,
@@ -422,3 +422,41 @@ local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
             loadstring(game:HttpGet("https://raw.githubusercontent.com/FadeRemix/RND-Games/main/DestructionSim.lua"))()
        end,
     })
+
+    local FeScriptsTab = Window:CreateTab("FeScripts", nil) -- Title, Image
+    local Section = FeScriptsTab:CreateSection("FeScripts
+
+    local Button = FeScriptsTab:CreateButton({
+   Name = "SCP GUY",
+   Callback = function()
+        https://pastebin.com/raw/ZNVU8NGf
+    end,
+})
+
+    local Button = FeScriptsTab:CreateButton({
+   Name = "Fling Gui,
+   Callback = function()
+        loadstring(game:HttpGet("https://paste.ee/r/NTtmf", true))()
+   end,
+})
+
+    local Button = FeScriptsTab:CreateButton({
+   Name = "ShadowHub",
+   Callback = function()
+        loadstring(game:HttpGet("https://gist.githubusercontent.com/dark-modz/a89a5d629d598fc198d1106fe6701685/raw/646a9cefa844cccd3c760715f59d25fe63b4a06b/shadowhub-NekoAndMore"))()
+   end,
+})
+
+    local Button = FeScriptsTab:CreateButton({
+   Name = "Da hood off topic but its really good",
+   Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/NighterEpic/Faded/main/YesEpic", true))()
+   end,
+})
+
+    local Button = FeScriptsTab:CreateButton({
+   Name = "Fe ScriptHub",
+   Callback = function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/Dvrknvss/UniversalFEScriptHub/main/Script'))()
+   end,
+})
