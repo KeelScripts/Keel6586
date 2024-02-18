@@ -423,40 +423,40 @@
        end,
     })
 
-    local FeScriptsTab = Window:CreateTab("FeScripts", nil) -- Title, Image
-    local Section = FeScriptsTab:CreateSection("FeScripts
+    local ScripterTab = Window:CreateTab("CoolOpScripts", nil) -- Title, Image
+    local Section = ScripterTab:CreateSection("CoolOpScripts
 
-    local Button = FeScriptsTab:CreateButton({
-   Name = "SCP GUY",
-   Callback = function()
-        https://pastebin.com/raw/ZNVU8NGf
-    end,
-})
+    local Button = ScripterTab:CreateButton({
+       Name = "FE scripthub",
+       Callback = function()       
+            
+       end,
+    })
 
-    local Button = FeScriptsTab:CreateButton({
-   Name = "Fling Gui,
-   Callback = function()
-        loadstring(game:HttpGet("https://paste.ee/r/NTtmf", true))()
-   end,
-})
+    local Button = ScripterTab:CreateButton({
+       Name = "LiftingSim",
+       Callback = function()       
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/insanedude59/LiftingSim/main/LiftingSimulator.lua"))()
+       end,
+    })
 
-    local Button = FeScriptsTab:CreateButton({
-   Name = "ShadowHub",
-   Callback = function()
-        loadstring(game:HttpGet("https://gist.githubusercontent.com/dark-modz/a89a5d629d598fc198d1106fe6701685/raw/646a9cefa844cccd3c760715f59d25fe63b4a06b/shadowhub-NekoAndMore"))()
-   end,
-})
+    local Button = ScripterTab:CreateButton({
+       Name = "Da Hood",
+       Callback = function()       
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/NighterEpic/Faded/main/YesEpic", true))()
+       end,
+    })
 
-    local Button = FeScriptsTab:CreateButton({
-   Name = "Da hood off topic but its really good",
-   Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/NighterEpic/Faded/main/YesEpic", true))()
-   end,
-})
+    local Button = ScripterTab:CreateButton({
+       Name = "LuckyBlocks",
+       Callback = function()       
+            loadstring(game:HttpGet(('https://raw.githubusercontent.com/stillnotgivingafuck/LuckyBlocks/main/loader.lua')))()
+       end,
+    })
 
-    local Button = FeScriptsTab:CreateButton({
-   Name = "Fe ScriptHub",
-   Callback = function()
-        loadstring(game:HttpGet('https://raw.githubusercontent.com/Dvrknvss/UniversalFEScriptHub/main/Script'))()
-   end,
-})
+    local Button = ScripterTab:CreateButton({
+       Name = "Shindo Life",
+       Callback = function()       
+            loadstring(game:HttpGet(“https://raw.githubusercontent.com/6Wumpus6/SpyHub/main/ShindoLife”, true))()
+       end,
+    })
