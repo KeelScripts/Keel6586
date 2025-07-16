@@ -1,462 +1,460 @@
-    local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
-    
-    local Window = Rayfield:CreateWindow({
-       Name = "KeelHub",
-       LoadingTitle = "KeelHub",
-       LoadingSubtitle = "by KEEL",
-       ConfigurationSaving = {
-          Enabled = true,
-          FolderName = nil, -- Create a custom folder for your hub/game
-          FileName = "Keel Hub"
-       },
-       Discord = {
-          Enabled = false,
-          Invite = "noinvitelink", -- The Discord invite code, do not include discord.gg/. E.g. discord.gg/ABCD would be ABCD
-          RememberJoins = true -- Set this to false to make them join the discord every time they load it up
-       },
-       KeySystem = true, -- Set this to true to use our key system
-       KeySettings = {
-          Title = "KeelHub Key System",
-          Subtitle = "Key System",
-          Note = "Key in discord",
-          FileName = "KeelHub", -- It is recommended to use something unique as other scripts using Rayfield may overwrite your key file
-          SaveKey = false, -- The user's key will be saved, but if you change the key, they will be unable to use your script
-          GrabKeyFromSite = true, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
-          Key = {"https://pastebin.com/raw/Zk7VMqK9"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
-       }
-    })
-    
-    local MainTab = Window:CreateTab("Home", nil) -- Title, Image
-    local MainSection = MainTab:CreateSection("🏠Home")
-    
-    Rayfield:Notify({
-       Title = "you have executed this script",
-       Content = "This is a very cool script🆒",
-       Image = 4483362458,
-       Actions = { -- Notification Buttons
-          Ignore = {
-             Name = "Okay!",
-             Callback = function()
-             print("The user tapped Okay!")
-          end
-       },
-    },
-    })
-    
-    local Button = MainTab:CreateButton({
-       Name = "SlapBattles",
-       Callback = function()
-            loadstring(game:HttpGet(("https://raw.githubusercontent.com/ionlyusegithubformcmods/1-Line-Scripts/main/Slap%20Battles")))()
-       end,
-    })
-    
-    local Button = MainTab:CreateButton({
-       Name = "Da Hood Swag Mode",
-       Callback = function()
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/lerkermer/lua-projects/master/SwagModeV002"))()
-       end,
-    })
-    
-    local Button = MainTab:CreateButton({
-       Name = "ScriptHub",
-       Callback = function()
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/scripthubekitten/SCRIPTHUBV2/main/SCRIPTHUBV2", true))()
-       end,
-    })
-    
-    local Button = MainTab:CreateButton({
-       Name = "NukeHub",
-       Callback = function()
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/NukeVsCity/TheALLHACKLoader/main/NukeLoader"))()
-       end,
-    })
-    
-        local Button = MainTab:CreateButton({
-       Name = "Break in 1",
-       Callback = function()
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/RubyBoo4life/break-in-v1/main/.gitignore"))();
-       end,
-    })
-    
-    local Button = MainTab:CreateButton({
-       Name = "Break in 2",
-       Callback = function()
-            loadstring(game:HttpGet("https://freenote.biz/raw/ScmsS7SwTW",true))()
-       end,
-    })
-    
-        local Button = MainTab:CreateButton({
-       Name = "mm2 Key - lunarhubnicebye",
-       Callback = function()
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/vwSaraa/LunarHub/main/mm2"))()
-       end,
-    })
-    
-    local Button = MainTab:CreateButton({
-       Name = "Blade ball",
-       Callback = function()  
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/3345-c-a-t-s-u-s/-beta-/main/AutoParry.lua"))()
-       end,
-    })
-    
-    local Button = MainTab:CreateButton({
-       Name = "Build a boat",
-       Callback = function()
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/Deni210/BABFT/main/Ruby%20Hub", true))()
-       end,
-    })
-    
-    local Button = MainTab:CreateButton({
-       Name = "Adopt Me",
-       Callback = function()
-            loadstring(game:HttpGet(('https://raw.githubusercontent.com/rblxscriptsnet/unfair/main/rblxhub.lua'),true))()
-       end,
-    })
-    
-    local OtherTab = Window:CreateTab("Others", nil) -- Title, Image
-    local Section = OtherTab:CreateSection("Other scripts")
-        
-    local Button = OtherTab:CreateButton({
-       Name = "Shadow Box",
-       Callback = function()
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/imwifi/1FO/main/main.lua"))()
-       end,
-    })
-    
-    local Button = OtherTab:CreateButton({
-       Name = "BrookHaven",
-       Callback = function()
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/IceMael7/NewIceHub/main/Brookhaven"))()
-       end,
-    })
-    
-    local Button = OtherTab:CreateButton({
-       Name = "Blox Fruits",
-       Callback = function()
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/Omgshit/Scripts/main/MainLoader.lua"))()
-       end,
-    })
-    
-    local Button = OtherTab:CreateButton({
-       Name = "fe zombie animation",
-       Callback = function()
-            while true do
-    local Animate = game.Players.LocalPlayer.Character.Animate
-    Animate.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=616163682"
-    game.Players.LocalPlayer.Character.Humanoid.Jump = false
-    wait(1)
+local library = {}
+
+local ScreenGui = Instance.new("ScreenGui")
+local Main = Instance.new("Frame")
+local Top = Instance.new("Frame")
+local UICorner = Instance.new("UICorner")
+local Title = Instance.new("TextLabel")
+local TimeLabel = Instance.new("TextLabel")
+local TabHolder = Instance.new("ScrollingFrame")
+local TabList = Instance.new("UIListLayout")
+local Container = Instance.new("Frame")
+local TabContent = Instance.new("ScrollingFrame")
+local ContentList = Instance.new("UIListLayout")
+
+ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+ScreenGui.Name = "KavoUI"
+
+Main.Name = "Main"
+Main.Parent = ScreenGui
+Main.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+Main.BorderSizePixel = 0
+Main.Position = UDim2.new(0, 10, 0.5, -150)
+Main.Size = UDim2.new(0, 400, 0, 300)
+Main.Active = true
+Main.Draggable = true
+
+Top.Name = "Top"
+Top.Parent = Main
+Top.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
+Top.Size = UDim2.new(1, 0, 0, 25)
+Top.BorderSizePixel = 0
+UICorner.CornerRadius = UDim.new(0, 4)
+UICorner.Parent = Top
+
+Title.Name = "Title"
+Title.Parent = Top
+Title.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Title.BackgroundTransparency = 1
+Title.Size = UDim2.new(0, 200, 1, 0)
+Title.Font = Enum.Font.Gotham
+Title.Text = "Krypton Mods"
+Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+Title.TextSize = 14
+Title.Position = UDim2.new(0, 5, 0, 0)
+
+TimeLabel.Name = "TimeLabel"
+TimeLabel.Parent = Top
+TimeLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TimeLabel.BackgroundTransparency = 1
+TimeLabel.Size = UDim2.new(0, 100, 1, 0)
+TimeLabel.Position = UDim2.new(1, -105, 0, 0)
+TimeLabel.Font = Enum.Font.Gotham
+TimeLabel.Text = "11:05 AM CDT, Jul 16, 2025"
+TimeLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+TimeLabel.TextSize = 12
+TimeLabel.TextXAlignment = Enum.TextXAlignment.Right
+
+TabHolder.Name = "TabHolder"
+TabHolder.Parent = Main
+TabHolder.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+TabHolder.BorderSizePixel = 0
+TabHolder.Position = UDim2.new(0, 0, 0, 25)
+TabHolder.Size = UDim2.new(0, 100, 1, -25)
+TabHolder.CanvasSize = UDim2.new(0, 0, 0, 0)
+TabHolder.ScrollBarThickness = 4
+TabHolder.ClipsDescendants = true
+
+TabList.Name = "TabList"
+TabList.Parent = TabHolder
+TabList.FillDirection = Enum.FillDirection.Vertical
+TabList.SortOrder = Enum.SortOrder.LayoutOrder
+TabList.Padding = UDim.new(0, 2)
+
+Container.Name = "Container"
+Container.Parent = Main
+Container.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+Container.BorderSizePixel = 0
+Container.Position = UDim2.new(0, 100, 0, 25)
+Container.Size = UDim2.new(0, 300, 1, -25)
+
+TabContent.Name = "TabContent"
+TabContent.Parent = Container
+TabContent.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+TabContent.BorderSizePixel = 0
+TabContent.Position = UDim2.new(0, 5, 0, 5)
+TabContent.Size = UDim2.new(1, -10, 1, -10)
+TabContent.CanvasSize = UDim2.new(0, 0, 0, 0)
+TabContent.ScrollBarThickness = 4
+TabContent.ClipsDescendants = true
+
+ContentList.Name = "ContentList"
+ContentList.Parent = TabContent
+ContentList.FillDirection = Enum.FillDirection.Vertical
+ContentList.SortOrder = Enum.SortOrder.LayoutOrder
+ContentList.Padding = UDim.new(0, 5)
+
+-- Key System with Notifications
+local key = "KRYPTON"
+local hasKey = false
+
+if not hasKey then
+    local KeyGui = Instance.new("ScreenGui")
+    local KeyFrame = Instance.new("Frame")
+    local KeyLabel = Instance.new("TextLabel")
+    local KeyBox = Instance.new("TextBox")
+    local SubmitButton = Instance.new("TextButton")
+    local Notification = Instance.new("Frame")
+
+    KeyGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+    KeyFrame.Parent = KeyGui
+    KeyFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+    KeyFrame.Size = UDim2.new(0, 200, 0, 100)
+    KeyFrame.Position = UDim2.new(0.5, -100, 0.5, -50)
+    KeyFrame.BorderSizePixel = 0
+
+    KeyLabel.Parent = KeyFrame
+    KeyLabel.BackgroundTransparency = 1
+    KeyLabel.Size = UDim2.new(1, 0, 0, 20)
+    KeyLabel.Text = "Enter Key:"
+    KeyLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+    KeyLabel.Font = Enum.Font.Gotham
+    KeyLabel.TextSize = 14
+
+    KeyBox.Parent = KeyFrame
+    KeyBox.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+    KeyBox.Size = UDim2.new(0, 180, 0, 30)
+    KeyBox.Position = UDim2.new(0.5, -90, 0, 30)
+    KeyBox.Text = ""
+    KeyBox.TextColor3 = Color3.fromRGB(255, 255, 255)
+    KeyBox.Font = Enum.Font.Gotham
+    KeyBox.TextSize = 14
+    local KeyBoxCorner = Instance.new("UICorner")
+    KeyBoxCorner.CornerRadius = UDim.new(0, 4)
+    KeyBoxCorner.Parent = KeyBox
+
+    SubmitButton.Parent = KeyFrame
+    SubmitButton.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+    SubmitButton.Size = UDim2.new(0, 80, 0, 30)
+    SubmitButton.Position = UDim2.new(0.5, -40, 0, 65)
+    SubmitButton.Text = "Submit"
+    SubmitButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+    SubmitButton.Font = Enum.Font.Gotham
+    SubmitButton.TextSize = 14
+    local SubmitCorner = Instance.new("UICorner")
+    SubmitCorner.CornerRadius = UDim.new(0, 4)
+    SubmitCorner.Parent = SubmitButton
+
+    Notification.Name = "Notification"
+    Notification.Parent = KeyGui
+    Notification.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+    Notification.Size = UDim2.new(0, 200, 0, 40)
+    Notification.Position = UDim2.new(0.5, -100, 0.5, -100)
+    Notification.Visible = false
+    local NotifCorner = Instance.new("UICorner")
+    NotifCorner.CornerRadius = UDim.new(0, 4)
+    NotifCorner.Parent = Notification
+    local NotifText = Instance.new("TextLabel")
+    NotifText.Parent = Notification
+    NotifText.BackgroundTransparency = 1
+    NotifText.Size = UDim2.new(1, 0, 1, 0)
+    NotifText.Text = ""
+    NotifText.TextColor3 = Color3.fromRGB(255, 255, 255)
+    NotifText.Font = Enum.Font.Gotham
+    NotifText.TextSize = 14
+    NotifText.TextWrapped = true
+
+    SubmitButton.MouseButton1Click:Connect(function()
+        if KeyBox.Text:upper() == key then
+            hasKey = true
+            Notification.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+            NotifText.Text = "Key Accepted!"
+            Notification.Visible = true
+            wait(1.5)
+            Notification.Visible = false
+            KeyGui:Destroy()
+            Main.Visible = true
+        else
+            Notification.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+            NotifText.Text = "Incorrect Key!"
+            Notification.Visible = true
+            wait(1.5)
+            Notification.Visible = false
+        end
+    end)
+
+    Main.Visible = false
+    wait(0.1) -- Allow GUI to render
+end
+
+function library:CreateWindow(title)
+    Title.Text = title or "Krypton Mods"
+    local Window = {Tabs = {}, SelectedTab = nil}
+
+    function Window:CreateTab(tabName)
+        local Tab = {}
+        local TabButton = Instance.new("TextButton")
+        TabButton.Name = "Tab_" .. tabName
+        TabButton.Parent = TabHolder
+        TabButton.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+        TabButton.Size = UDim2.new(0, 90, 0, 40)
+        TabButton.Font = Enum.Font.Gotham
+        TabButton.Text = tabName
+        TabButton.TextColor3 = Color3.fromRGB(200, 200, 200)
+        TabButton.TextSize = 14
+        TabButton.BackgroundTransparency = 0
+        TabButton.BorderSizePixel = 0
+        local Padding = Instance.new("UIPadding")
+        Padding.Parent = TabButton
+        Padding.PaddingLeft = UDim.new(0, 5)
+        local UICorner = Instance.new("UICorner")
+        UICorner.CornerRadius = UDim.new(0, 4)
+        UICorner.Parent = TabButton
+
+        TabButton.MouseButton1Click:Connect(function()
+            for _, btn in pairs(TabHolder:GetChildren()) do
+                if btn:IsA("TextButton") then
+                    btn.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+                end
+            end
+            TabButton.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
+            Window.SelectedTab = tabName
+            UpdateTabs()
+        end)
+
+        function Tab:CreateButton(btnName, callback)
+            local Button = Instance.new("TextButton")
+            Button.Name = "Button_" .. btnName
+            Button.Parent = TabContent
+            Button.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
+            Button.Size = UDim2.new(0, 280, 0, 30)
+            Button.Font = Enum.Font.Gotham
+            Button.Text = btnName
+            Button.TextColor3 = Color3.fromRGB(255, 255, 255)
+            Button.TextSize = 14
+            Button.BackgroundTransparency = 0
+            Button.BorderSizePixel = 0
+            local Padding = Instance.new("UIPadding")
+            Padding.Parent = Button
+            Padding.PaddingLeft = UDim.new(0, 10)
+            local UICorner = Instance.new("UICorner")
+            UICorner.CornerRadius = UDim.new(0, 4)
+            UICorner.Parent = Button
+
+            Button.MouseButton1Click:Connect(callback)
+            return Button
+        end
+
+        table.insert(Window.Tabs, {Name = tabName, Button = TabButton, Content = {}})
+        if not Window.SelectedTab then
+            Window.SelectedTab = tabName
+            TabButton.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
+        end
+        return Tab
     end
-       end,
-    })
-    
-    local Button = OtherTab:CreateButton({
-    Name = "Execute scripts in chat",
-       Callback = function()
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/zephyr10101/chat-executor/main/chat-executor",true))()
-       end,
-    })
-    
-    local Button = OtherTab:CreateButton({
-       Name = "Natural Disaster",
-       Callback = function()
-            loadstring(game:HttpGet'https://raw.githubusercontent.com/RunDTM/ZeeroxHub/main/Loader.lua')()
-       end,
-    })
-    
-    local Button = OtherTab:CreateButton({
-       Name = "Broken Bones IV",
-       Callback = function()
-            loadstring(game:HttpGet('https://raw.githubusercontent.com/BoaHacker/ROBLOX/main/cheat', true))()
-       end,
-    })
-    
-    local Button = OtherTab:CreateButton({
-       Name = "Pls Donate",
-       Callback = function()
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/2dgeneralspam1/scripts-and-stuff/master/scripts/LoadstringypVvhJBq4QNz", true))()
-       end,
-    })
-    
-    local Button = OtherTab:CreateButton({
-       Name = "Field trip Z",
-       Callback = function()
-            loadstring(game:HttpGet('https://raw.githubusercontent.com/1201for/V.G-Hub/main/V.Ghub'))()
-      end,
-    })
-    
-    local Button = OtherTab:CreateButton({
-       Name = "areaphobia",
-       Callback = function()
-            loadstring(game:HttpGet(('https://raw.githubusercontent.com/E240-h/apgui/main/n'),true))()
-       end,
-    })
-    
-    local Button = OtherTab:CreateButton({
-       Name = "Funky Friday AutoPlay",
-       Callback = function()
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/wally-rblx/funky-friday-autoplay/main/main.lua",true))()
-       end,
-    })
-    
-    local MiscTab = Window:CreateTab("Misc", nil) -- Title, Image
-        local Section = MiscTab:CreateSection("Misc🎲")
-    
-    local Button = MiscTab:CreateButton({
-       Name = "Infinite yield",
-       Callback = function()
-            loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
-       end,
-    })
-    
-    local Button = MiscTab:CreateButton({
-       Name = "discord.gg/72xNeKXd3C",
-       Callback = function()
-       -- The function that takes place when the button is pressed
-       end,
-    })
-    
-    local ScriptsTab = Window:CreateTab("Scripts", nil) -- Title, Image
-    local Section = ScriptsTab:CreateSection("GoodScripts")
-    
-        local Button = ScriptsTab:CreateButton({
-       Name = "ARSENAL OP",
-       Callback = function()
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/YellowGreg/Loadstring/main/arsenal4.lua"))()
-       end,
-    })
-    
-    local Button = ScriptsTab:CreateButton({
-       Name = "Fake Macro🔥",
-       Callback = function()
-            loadstring(game:HttpGetAsync("https://pastebin.com/raw/XiqsUXHj", true))()
-       end,
-    })
-    
-    local Button = ScriptsTab:CreateButton({
-       Name = "Synapse X",
-       Callback = function()
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/AZYsGithub/Chillz-s-scripts/main/Synapse-X-Remake.lua"))()
-       end,
-    })
-    
-    local Button = ScriptsTab:CreateButton({
-       Name = "Hood Modded",
-       Callback = function()
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/scripthubekitten/scripthubcyandotV2.1/main/scripthubcyandotV2.1", true))()
-       end,
-    })
-    
-    local Button = ScriptsTab:CreateButton({
-       Name = "Script Scarlet V2",
-       Callback = function()
-            loadstring(game:HttpGet("https://pastecode.dev/raw/8TcNwKmv1t/script%20Scarlet%20v2"))()
-       end,
-    })
-    
-    local Button = ScriptsTab:CreateButton({
-       Name = "Doors",
-       Callback = function()
-            loadstring(game:HttpGet(("https://pastebin.com/raw/9QPGnLx6"),true))()
-       end,
-    })
-    
-    local Button = ScriptsTab:CreateButton({
-       Name = "Blox Fruits",
-       Callback = function()
-            loadstring(game:HttpGet("https://pastecode.dev/raw/22F0JoxR0L/blox%20fruit%20scarlet"))()
-       end,
-    })
-    
-    local Button = ScriptsTab:CreateButton({
-       Name = "Piggy",
-       Callback = function()
-            loadstring(game:HttpGet(('https://raw.githubusercontent.com/lolpoppyus/Roblox-Lua/master/Piggy'),true))()
-       end,
-    })
-    
-    local Button = ScriptsTab:CreateButton({
-       Name = "Whacky Wizards",
-       Callback = function()
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/ToraIsMe2/ToraIsMe2/main/0wacky", true))()
-       end,
-    })
-    
-    local Button = ScriptsTab:CreateButton({
-       Name = "The Strongest BattleGrounds",
-       Callback = function()
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/Nicuse/RobloxScripts/main/SaitamaBattlegrounds.lua"))()
-       end,
-    })
-    
-    local Button = ScriptsTab:CreateButton({
-       Name = "Bee Swarm",
-       Callback = function()
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/not-xen0n/Lua/main/bsstrainer.lua"))()
-       end,
-    })
-    
-    local Button = ScriptsTab:CreateButton({
-       Name = "RagdollEngineGUI",
-       Callback = function()
-            loadstring(game:HttpGet(('https://gitlab.com/Tsuniox/lua-stuff/-/raw/master/RagdollEngineGUI.lua'),true))()
-       end,
-    })
-    
-    local Button = ScriptsTab:CreateButton({
-       Name = "Evade Key:eqRYZmvsefMPfHeEth2UIn5xumasm33UPbqQ2V7D99GgzRGtzVxI3yPbsVhYa74C",
-       Callback = function()
-            loadstring(game:HttpGet('https://raw.githubusercontent.com/zReal-King/Evade/main/Main.lua'))()
-       end,
-    })
-    
-    local Button = ScriptsTab:CreateButton({
-       Name = "BedWars",
-       Callback = function()
-            loadstring(game:HttpGet("https://scriptblox.com/raw/Vape-V4-For-Roblox_316"))()
-       end,
-    })
-    
-    local Button = ScriptsTab:CreateButton({
-       Name = "Blade ball",
-       Callback = function()
-            loadstring(game:HttpGet("https://shz.al/~Fujibladeball"))()
-       end,
-    })
-    
-    local Button = ScriptsTab:CreateButton({
-       Name = "Blox fruits",
-       Callback = function()
-           loadstring(game:HttpGet("https://shz.al/~Bountyscriptbloxfruits"))()
-       end,
-    })
-    
-    local Button = ScriptsTab:CreateButton({
-       Name = "Blox Fruits",
-       Callback = function()
-            loadstring(game:HttpGet("https://shz.al/~Omgbloxfruits"))()
-       end,
-    })
-    local Button = ScriptsTab:CreateButton({
-       Name = "Strongman simulator",
-       Callback = function()
-            loadstring(game:HttpGet('https://raw.githubusercontent.com/hngamingroblox/scripts/main/strongman%20simulator'))()
-       end,
-    })
-    
-    local Button = ScriptsTab:CreateButton({
-       Name = "DOORS",
-       Callback = function()
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/GamingScripter/Darkrai-X/main/Games/Doors"))()
-       end,
-    })
-    
-    local Button = ScriptsTab:CreateButton({
-       Name = "Fruit battleGrounds",
-       Callback = function()
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/xtrey10x/xtrey10x-hub/main/FruitBattlegrounds"))()
-       end,
-    })
-    
-    local GoodscriptsTab = Window:CreateTab("good scripts", nil) -- Title, Image
-    local Section = GoodscriptsTab:CreateSection("good scripts")
-    
-    local Button = GoodscriptsTab:CreateButton({
-       Name = "scriptHub",
-       Callback = function()
-            loadstring(game:HttpGet("https://pastebin.com/raw/18ji1xzk"))();
-       end,
-    })
-    
-    local Button = GoodscriptsTab:CreateButton({
-       Name = "Natural Disaster",
-       Callback = function()
-            loadstring(game:HttpGet'https://raw.githubusercontent.com/RunDTM/ZeeroxHub/main/Loader.lua')()
-       end,
-    })
-    
-    local Button = GoodscriptsTab:CreateButton({
-       Name = "ohio.",
-       Callback = function()
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/scriptpastebin/raw/main/AlphaOhio"))()
-       end,
-    })
-    
-    local Button = GoodscriptsTab:CreateButton({
-       Name = "Starving Artist",
-       Callback = function()
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/itsnoctural/Utilities/main/Closed/StarvingArtist.lua"))()
-       end,
-    })
-    
-    local Button = GoodscriptsTab:CreateButton({
-       Name = "pet sim 99",
-       Callback = function()
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/H4k4rr/iloveyou/main/PS99"))()
-       end,
-    })
-    
-    local Button = GoodscriptsTab:CreateButton({
-       Name = "Flicker",
-       Callback = function()
-            loadstring(game:HttpGet(('https://pastebin.com/raw/dxwn1Hvz'),true))()
-       end,
-    })
-    
-    local Button = GoodscriptsTab:CreateButton({
-       Name = "Prison Life",
-       Callback = function()
-            loadstring(game:HttpGet("https://pastebin.com/raw/mHfK0Xk4", true))()
-       end,
-    })
-    
-    local Button = GoodscriptsTab:CreateButton({
-       Name = "ScriptHub",
-       Callback = function()
-            loadstring(game:HttpGet"https://raw.githubusercontent.com/CheapeeWastaken/Lazium/main/TheMain")()
-       end,
-    })
-    
-    local Button = GoodscriptsTab:CreateButton({
-       Name = "DestructionSim",
-       Callback = function()       
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/FadeRemix/RND-Games/main/DestructionSim.lua"))()
-       end,
-    })
 
-    local FeScriptsTab = Window:CreateTab("FeScripts", nil) -- Title, Image
-    local Section = FeScriptsTab:CreateSection("FeScripts
+    function UpdateTabs()
+        TabContent:ClearAllChildren()
+        ContentList = Instance.new("UIListLayout")
+        ContentList.Parent = TabContent
+        ContentList.FillDirection = Enum.FillDirection.Vertical
+        ContentList.SortOrder = Enum.SortOrder.LayoutOrder
+        ContentList.Padding = UDim.new(0, 5)
 
-    local Button = FeScriptsTab:CreateButton({
-   Name = "SCP GUY",
-   Callback = function()
-        https://pastebin.com/raw/ZNVU8NGf
-    end,
-})
+        local activeTab = nil
+        for _, tab in pairs(Window.Tabs) do
+            if tab.Name == Window.SelectedTab then
+                activeTab = tab
+                break
+            end
+        end
 
-    local Button = FeScriptsTab:CreateButton({
-   Name = "Fling Gui,
-   Callback = function()
-        loadstring(game:HttpGet("https://paste.ee/r/NTtmf", true))()
-   end,
-})
+        if activeTab then
+            if activeTab.Name == "Scripts" then
+                scriptEditor.Parent = TabContent
+                ExecuteButton.Parent = TabContent
+                TabContent.CanvasSize = UDim2.new(0, 0, 0, 240) -- Editor (200) + Button (40)
+            else
+                TabContent.CanvasSize = UDim2.new(0, 0, 0, #activeTab.Content * 35)
+                for i, content in pairs(activeTab.Content) do
+                    content[2]() -- Execute callback
+                    activeTab.Button:CreateButton(content[1], content[2])
+                end
+            end
+        end
+        TabHolder.CanvasSize = UDim2.new(0, 0, 0, #Window.Tabs * 42)
+    end
 
-    local Button = FeScriptsTab:CreateButton({
-   Name = "ShadowHub",
-   Callback = function()
-        loadstring(game:HttpGet("https://gist.githubusercontent.com/dark-modz/a89a5d629d598fc198d1106fe6701685/raw/646a9cefa844cccd3c760715f59d25fe63b4a06b/shadowhub-NekoAndMore"))()
-   end,
-})
+    local WindowTab = Window:CreateTab("Home")
+    WindowTab.Content = {{"Toggle GUI", function() Main.Visible = not Main.Visible end}}
 
-    local Button = FeScriptsTab:CreateButton({
-   Name = "Da hood off topic but its really good",
-   Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/NighterEpic/Faded/main/YesEpic", true))()
-   end,
-})
+    local ModsTab = Window:CreateTab("Mods")
+    local modStates = {
+        SuperSpeed = false,
+        SuperJump = false,
+        Fog = false,
+        Neon = false,
+        Aimbot = false,
+        ESP = false
+    }
 
-    local Button = FeScriptsTab:CreateButton({
-   Name = "Fe ScriptHub",
-   Callback = function()
-        loadstring(game:HttpGet('https://raw.githubusercontent.com/Dvrknvss/UniversalFEScriptHub/main/Script'))()
-   end,
-})
+    ModsTab.Content = {
+        {"Super Speed", function()
+            modStates.SuperSpeed = not modStates.SuperSpeed
+            local character = game.Players.LocalPlayer.Character
+            if character and character:FindFirstChild("Humanoid") then
+                character.Humanoid.WalkSpeed = modStates.SuperSpeed and 64 or 16
+            end
+        end},
+        {"Super Jump", function()
+            modStates.SuperJump = not modStates.SuperJump
+            local character = game.Players.LocalPlayer.Character
+            if character and character:FindFirstChild("Humanoid") then
+                character.Humanoid.JumpPower = modStates.SuperJump and 100 or 50
+            end
+        end},
+        {"Fog On", function()
+            modStates.Fog = not modStates.Fog
+            local lighting = game:GetService("Lighting")
+            lighting.FogEnd = modStates.Fog and 50 or 1000
+        end},
+        {"Neon Skin", function()
+            modStates.Neon = not modStates.Neon
+            local character = game.Players.LocalPlayer.Character
+            if character then
+                for _, part in pairs(character:GetDescendants()) do
+                    if part:IsA("BasePart") then
+                        part.Material = modStates.Neon and Enum.Material.Neon or Enum.Material.Plastic
+                    end
+                end
+            end
+        end},
+        {"Aimbot", function()
+            modStates.Aimbot = not modStates.Aimbot
+            local player = game.Players.LocalPlayer
+            local mouse = player:GetMouse()
+            local userInputService = game:GetService("UserInputService")
+            local runService = game:GetService("RunService")
+
+            if modStates.Aimbot then
+                local connection
+                connection = runService.RenderStepped:Connect(function()
+                    if modStates.Aimbot and userInputService:IsMouseButtonPressed(Enum.UserInputType.MouseButton2) then
+                        local maxDistance = math.huge
+                        local target = nil
+                        for _, plr in pairs(game.Players:GetPlayers()) do
+                            if plr ~= player and plr.Character and plr.Character:FindFirstChild("Head") then
+                                local head = plr.Character.Head
+                                local screenPoint, onScreen = workspace.CurrentCamera:WorldToViewportPoint(head.Position)
+                                local distance = (Vector2.new(mouse.X, mouse.Y) - Vector2.new(screenPoint.X, screenPoint.Y)).Magnitude
+                                if onScreen and distance < maxDistance then
+                                    maxDistance = distance
+                                    target = head
+                                end
+                            end
+                        end
+                        if target then
+                            workspace.CurrentCamera.CFrame = CFrame.new(workspace.CurrentCamera.CFrame.Position, target.Position)
+                        end
+                    end
+                end)
+                spawn(function()
+                    while wait() do
+                        if not modStates.Aimbot then
+                            connection:Disconnect()
+                            break
+                        end
+                    end
+                end)
+            end
+        end},
+        {"ESP", function()
+            modStates.ESP = not modStates.ESP
+            local function createEsp(plr)
+                if plr.Character and plr.Character:FindFirstChild("Head") then
+                    local billboard = Instance.new("BillboardGui")
+                    billboard.Parent = plr.Character.Head
+                    billboard.Size = UDim2.new(0, 100, 0, 100)
+                    billboard.AlwaysOnTop = true
+                    local frame = Instance.new("Frame")
+                    frame.Parent = billboard
+                    frame.Size = UDim2.new(0, 100, 0, 100)
+                    frame.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+                    frame.Transparency = 0.5
+                end
+            end
+
+            local function removeEsp(plr)
+                if plr.Character and plr.Character:FindFirstChild("Head") and plr.Character.Head:FindFirstChild("BillboardGui") then
+                    plr.Character.Head:FindFirstChild("BillboardGui"):Destroy()
+                end
+            end
+
+            if modStates.ESP then
+                for _, plr in pairs(game.Players:GetPlayers()) do
+                    if plr ~= game.Players.LocalPlayer and plr.Character then
+                        createEsp(plr)
+                    end
+                end
+                game.Players.PlayerAdded:Connect(function(plr)
+                    plr.CharacterAdded:Connect(function()
+                        if modStates.ESP then createEsp(plr) end
+                    end)
+                end)
+            else
+                for _, plr in pairs(game.Players:GetPlayers()) do
+                    removeEsp(plr)
+                end
+            end
+        end}
+    }
+
+    local ScriptsTab = Window:CreateTab("Scripts")
+    local scriptEditor = Instance.new("TextBox")
+    scriptEditor.Name = "ScriptEditor"
+    scriptEditor.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+    scriptEditor.BorderSizePixel = 0
+    scriptEditor.Position = UDim2.new(0, 5, 0, 5)
+    scriptEditor.Size = UDim2.new(1, -10, 0, 200)
+    scriptEditor.Font = Enum.Font.Code
+    scriptEditor.Text = "-- Enter Lua code here (e.g., print('Hello'))"
+    scriptEditor.TextColor3 = Color3.fromRGB(200, 200, 200)
+    scriptEditor.TextSize = 14
+    scriptEditor.TextWrapped = true
+    scriptEditor.MultiLine = true
+    local EditorCorner = Instance.new("UICorner")
+    EditorCorner.CornerRadius = UDim.new(0, 4)
+    EditorCorner.Parent = scriptEditor
+
+    local ExecuteButton = Instance.new("TextButton")
+    ExecuteButton.Name = "ExecuteButton"
+    ExecuteButton.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+    ExecuteButton.Size = UDim2.new(0, 100, 0, 30)
+    ExecuteButton.Position = UDim2.new(0, 10, 0, 210)
+    ExecuteButton.Font = Enum.Font.Gotham
+    ExecuteButton.Text = "Execute"
+    ExecuteButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+    ExecuteButton.TextSize = 14
+    local ButtonCorner = Instance.new("UICorner")
+    ButtonCorner.CornerRadius = UDim.new(0, 4)
+    ButtonCorner.Parent = ExecuteButton
+
+    ScriptsTab.Content = {
+        {"Execute Script", function()
+            local success, error = pcall(function()
+                loadstring(scriptEditor.Text)()
+            end)
+            if not success then
+                warn("Script Error: " .. error)
+            end
+        end}
+    }
+
+    Window:CreateTab("Random")
+    Window:CreateTab("Plus")
+
+    UpdateTabs()
+    return Window
+end
+
+local Window = library:CreateWindow("Krypton Mods")
