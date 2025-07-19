@@ -9,8 +9,7 @@ local TimeLabel = Instance.new("TextLabel")
 local TabHolder = Instance.new("ScrollingFrame")
 local TabList = Instance.new("UIListLayout")
 local Container = Instance.new("Frame")
-local TabContent = Instance.new("ScrollingFrame")
-local ContentList = Instance.new("UIListLayout")
+local TabContent = Instance.new("Frame")
 
 ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 ScreenGui.Name = "KavoUI"
@@ -50,7 +49,7 @@ TimeLabel.BackgroundTransparency = 1
 TimeLabel.Size = UDim2.new(0, 100, 1, 0)
 TimeLabel.Position = UDim2.new(1, -105, 0, 0)
 TimeLabel.Font = Enum.Font.Gotham
-TimeLabel.Text = "11:05 AM CDT, Jul 16, 2025"
+TimeLabel.Text = "09:33 PM CDT, Jul 18, 2025"
 TimeLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
 TimeLabel.TextSize = 12
 TimeLabel.TextXAlignment = Enum.TextXAlignment.Right
@@ -84,15 +83,7 @@ TabContent.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
 TabContent.BorderSizePixel = 0
 TabContent.Position = UDim2.new(0, 5, 0, 5)
 TabContent.Size = UDim2.new(1, -10, 1, -10)
-TabContent.CanvasSize = UDim2.new(0, 0, 0, 0)
-TabContent.ScrollBarThickness = 4
 TabContent.ClipsDescendants = true
-
-ContentList.Name = "ContentList"
-ContentList.Parent = TabContent
-ContentList.FillDirection = Enum.FillDirection.Vertical
-ContentList.SortOrder = Enum.SortOrder.LayoutOrder
-ContentList.Padding = UDim.new(0, 5)
 
 -- Key System with Notifications
 local key = "KRYPTON"
@@ -189,11 +180,15 @@ end
 
 function library:CreateWindow(title)
     Title.Text = title or "Krypton Mods"
-    local Window = {Tabs = {}, SelectedTab = nil}
+    local Window = {Tabs = {}, ActiveTab = nil}
 
     function Window:CreateTab(tabName)
         local Tab = {}
         local TabButton = Instance.new("TextButton")
+        local TabFrame = Instance.new("Frame")
+        local TabLayout = Instance.new("UIListLayout")
+
+        -- Tab Button
         TabButton.Name = "Tab_" .. tabName
         TabButton.Parent = TabHolder
         TabButton.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
@@ -211,21 +206,31 @@ function library:CreateWindow(title)
         UICorner.CornerRadius = UDim.new(0, 4)
         UICorner.Parent = TabButton
 
+        -- Tab Frame
+        TabFrame.Name = "Frame_" .. tabName
+        TabFrame.Parent = TabContent
+        TabFrame.BackgroundTransparency = 1
+        TabFrame.Size = UDim2.new(1, 0, 1, 0)
+        TabFrame.Visible = false
+        TabLayout.Parent = TabFrame
+        TabLayout.FillDirection = Enum.FillDirection.Vertical
+        TabLayout.SortOrder = Enum.SortOrder.LayoutOrder
+        TabLayout.Padding = UDim.new(0, 5)
+
         TabButton.MouseButton1Click:Connect(function()
-            for _, btn in pairs(TabHolder:GetChildren()) do
-                if btn:IsA("TextButton") then
-                    btn.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-                end
+            for _, tab in pairs(Window.Tabs) do
+                tab.Button.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+                tab.Frame.Visible = false
             end
             TabButton.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
-            Window.SelectedTab = tabName
-            UpdateTabs()
+            TabFrame.Visible = true
+            Window.ActiveTab = tabName
         end)
 
         function Tab:CreateButton(btnName, callback)
             local Button = Instance.new("TextButton")
             Button.Name = "Button_" .. btnName
-            Button.Parent = TabContent
+            Button.Parent = TabFrame
             Button.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
             Button.Size = UDim2.new(0, 280, 0, 30)
             Button.Font = Enum.Font.Gotham
@@ -245,189 +250,156 @@ function library:CreateWindow(title)
             return Button
         end
 
-        table.insert(Window.Tabs, {Name = tabName, Button = TabButton, Content = {}})
-        if not Window.SelectedTab then
-            Window.SelectedTab = tabName
+        function Tab:CreateSlider(label, min, max, default, callback)
+            local SliderFrame = Instance.new("Frame")
+            local SliderLabel = Instance.new("TextLabel")
+            local SliderBar = Instance.new("TextButton")
+            local SliderValue = Instance.new("TextLabel")
+
+            SliderFrame.Name = "Slider_" .. label
+            SliderFrame.Parent = TabFrame
+            SliderFrame.BackgroundTransparency = 1
+            SliderFrame.Size = UDim2.new(0, 280, 0, 50)
+
+            SliderLabel.Name = "SliderLabel"
+            SliderLabel.Parent = SliderFrame
+            SliderLabel.BackgroundTransparency = 1
+            SliderLabel.Size = UDim2.new(1, 0, 0, 15)
+            SliderLabel.Font = Enum.Font.Gotham
+            SliderLabel.Text = label
+            SliderLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+            SliderLabel.TextSize = 14
+
+            SliderBar.Name = "SliderBar"
+            SliderBar.Parent = SliderFrame
+            SliderBar.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+            SliderBar.Size = UDim2.new(1, -20, 0, 10)
+            SliderBar.Position = UDim2.new(0, 10, 0, 20)
+            SliderBar.AutoButtonColor = false
+            SliderBar.BorderSizePixel = 0
+            local BarCorner = Instance.new("UICorner")
+            BarCorner.CornerRadius = UDim.new(0, 4)
+            BarCorner.Parent = SliderBar
+
+            SliderValue.Name = "SliderValue"
+            SliderValue.Parent = SliderFrame
+            SliderValue.BackgroundTransparency = 1
+            SliderValue.Size = UDim2.new(0, 50, 0, 15)
+            SliderValue.Position = UDim2.new(1, -60, 0, 20)
+            SliderValue.Font = Enum.Font.Gotham
+            SliderValue.Text = tostring(default)
+            SliderValue.TextColor3 = Color3.fromRGB(255, 255, 255)
+            SliderValue.TextSize = 14
+
+            local function updateSlider(x)
+                local percent = math.clamp((x - SliderBar.AbsolutePosition.X) / SliderBar.AbsoluteSize.X, 0, 1)
+                local value = math.floor(min + (max - min) * percent)
+                SliderValue.Text = tostring(value)
+                callback(value)
+            end
+
+            SliderBar.MouseButton1Down:Connect(function(x)
+                updateSlider(x.Position.X)
+                local moveConnection
+                local upConnection
+                moveConnection = game:GetService("UserInputService").InputChanged:Connect(function(input)
+                    if input.UserInputType == Enum.UserInputType.MouseMovement then
+                        updateSlider(input.Position.X)
+                    end
+                end)
+                upConnection = game:GetService("UserInputService").InputEnded:Connect(function(input)
+                    if input.UserInputType == Enum.UserInputType.MouseButton1 then
+                        moveConnection:Disconnect()
+                        upConnection:Disconnect()
+                    end
+                end)
+            end)
+
+            callback(default)
+            return SliderFrame
+        end
+
+        table.insert(Window.Tabs, {Name = tabName, Button = TabButton, Frame = TabFrame})
+        if not Window.ActiveTab then
+            Window.ActiveTab = tabName
             TabButton.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
+            TabFrame.Visible = true
         end
         return Tab
     end
 
-    function UpdateTabs()
-        TabContent:ClearAllChildren()
-        ContentList = Instance.new("UIListLayout")
-        ContentList.Parent = TabContent
-        ContentList.FillDirection = Enum.FillDirection.Vertical
-        ContentList.SortOrder = Enum.SortOrder.LayoutOrder
-        ContentList.Padding = UDim.new(0, 5)
-
-        local activeTab = nil
-        for _, tab in pairs(Window.Tabs) do
-            if tab.Name == Window.SelectedTab then
-                activeTab = tab
-                break
-            end
-        end
-
-        if activeTab then
-            if activeTab.Name == "Scripts" then
-                scriptEditor.Parent = TabContent
-                ExecuteButton.Parent = TabContent
-                TabContent.CanvasSize = UDim2.new(0, 0, 0, 240) -- Editor (200) + Button (40)
-            else
-                TabContent.CanvasSize = UDim2.new(0, 0, 0, #activeTab.Content * 35)
-                for i, content in pairs(activeTab.Content) do
-                    content[2]() -- Execute callback
-                    activeTab.Button:CreateButton(content[1], content[2])
-                end
-            end
-        end
-        TabHolder.CanvasSize = UDim2.new(0, 0, 0, #Window.Tabs * 42)
-    end
-
     local WindowTab = Window:CreateTab("Home")
-    WindowTab.Content = {{"Toggle GUI", function() Main.Visible = not Main.Visible end}}
+    WindowTab:CreateButton("Toggle GUI", function() Main.Visible = not Main.Visible end)
 
     local ModsTab = Window:CreateTab("Mods")
-    local modStates = {
-        SuperSpeed = false,
-        SuperJump = false,
-        Fog = false,
-        Neon = false,
-        Aimbot = false,
-        ESP = false
-    }
+    local modStates = {Aimbot = false}
+    local fov = 100
 
-    ModsTab.Content = {
-        {"Super Speed", function()
-            modStates.SuperSpeed = not modStates.SuperSpeed
-            local character = game.Players.LocalPlayer.Character
-            if character and character:FindFirstChild("Humanoid") then
-                character.Humanoid.WalkSpeed = modStates.SuperSpeed and 64 or 16
-            end
-        end},
-        {"Super Jump", function()
-            modStates.SuperJump = not modStates.SuperJump
-            local character = game.Players.LocalPlayer.Character
-            if character and character:FindFirstChild("Humanoid") then
-                character.Humanoid.JumpPower = modStates.SuperJump and 100 or 50
-            end
-        end},
-        {"Fog On", function()
-            modStates.Fog = not modStates.Fog
-            local lighting = game:GetService("Lighting")
-            lighting.FogEnd = modStates.Fog and 50 or 1000
-        end},
-        {"Neon Skin", function()
-            modStates.Neon = not modStates.Neon
-            local character = game.Players.LocalPlayer.Character
-            if character then
-                for _, part in pairs(character:GetDescendants()) do
-                    if part:IsA("BasePart") then
-                        part.Material = modStates.Neon and Enum.Material.Neon or Enum.Material.Plastic
-                    end
-                end
-            end
-        end},
-        {"Aimbot", function()
-            modStates.Aimbot = not modStates.Aimbot
-            local player = game.Players.LocalPlayer
-            local mouse = player:GetMouse()
-            local userInputService = game:GetService("UserInputService")
-            local runService = game:GetService("RunService")
+    ModsTab:CreateButton("Aimbot", function()
+        modStates.Aimbot = not modStates.Aimbot
+        local player = game.Players.LocalPlayer
+        local mouse = player:GetMouse()
+        local userInputService = game:GetService("UserInputService")
+        local runService = game:GetService("RunService")
 
-            if modStates.Aimbot then
-                local connection
-                connection = runService.RenderStepped:Connect(function()
-                    if modStates.Aimbot and userInputService:IsMouseButtonPressed(Enum.UserInputType.MouseButton2) then
-                        local maxDistance = math.huge
-                        local target = nil
-                        for _, plr in pairs(game.Players:GetPlayers()) do
-                            if plr ~= player and plr.Character and plr.Character:FindFirstChild("Head") then
-                                local head = plr.Character.Head
-                                local screenPoint, onScreen = workspace.CurrentCamera:WorldToViewportPoint(head.Position)
-                                local distance = (Vector2.new(mouse.X, mouse.Y) - Vector2.new(screenPoint.X, screenPoint.Y)).Magnitude
-                                if onScreen and distance < maxDistance then
-                                    maxDistance = distance
-                                    target = head
-                                end
+        if modStates.Aimbot then
+            local connection
+            connection = runService.RenderStepped:Connect(function()
+                if modStates.Aimbot and userInputService:IsMouseButtonPressed(Enum.UserInputType.MouseButton2) then
+                    local maxDistance = math.huge
+                    local target = nil
+                    for _, plr in pairs(game.Players:GetPlayers()) do
+                        if plr ~= player and plr.Character and plr.Character:FindFirstChild("Head") then
+                            local head = plr.Character.Head
+                            local screenPoint, onScreen = workspace.CurrentCamera:WorldToViewportPoint(head.Position)
+                            local distance = (Vector2.new(mouse.X, mouse.Y) - Vector2.new(screenPoint.X, screenPoint.Y)).Magnitude
+                            if onScreen and distance < fov and distance < maxDistance then
+                                maxDistance = distance
+                                target = head
                             end
                         end
-                        if target then
-                            workspace.CurrentCamera.CFrame = CFrame.new(workspace.CurrentCamera.CFrame.Position, target.Position)
-                        end
                     end
-                end)
-                spawn(function()
-                    while wait() do
-                        if not modStates.Aimbot then
-                            connection:Disconnect()
-                            break
-                        end
+                    if target then
+                        workspace.CurrentCamera.CFrame = CFrame.new(workspace.CurrentCamera.CFrame.Position, target.Position)
                     end
-                end)
-            end
-        end},
-        {"ESP", function()
-            modStates.ESP = not modStates.ESP
-            local function createEsp(plr)
-                if plr.Character and plr.Character:FindFirstChild("Head") then
-                    local billboard = Instance.new("BillboardGui")
-                    billboard.Parent = plr.Character.Head
-                    billboard.Size = UDim2.new(0, 100, 0, 100)
-                    billboard.AlwaysOnTop = true
-                    local frame = Instance.new("Frame")
-                    frame.Parent = billboard
-                    frame.Size = UDim2.new(0, 100, 0, 100)
-                    frame.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
-                    frame.Transparency = 0.5
                 end
-            end
+            end)
+            spawn(function()
+                while wait() do
+                    if not modStates.Aimbot then
+                        connection:Disconnect()
+                        break
+                    end
+                end
+            end)
+        end
+    end)
 
-            local function removeEsp(plr)
-                if plr.Character and plr.Character:FindFirstChild("Head") and plr.Character.Head:FindFirstChild("BillboardGui") then
-                    plr.Character.Head:FindFirstChild("BillboardGui"):Destroy()
-                end
-            end
-
-            if modStates.ESP then
-                for _, plr in pairs(game.Players:GetPlayers()) do
-                    if plr ~= game.Players.LocalPlayer and plr.Character then
-                        createEsp(plr)
-                    end
-                end
-                game.Players.PlayerAdded:Connect(function(plr)
-                    plr.CharacterAdded:Connect(function()
-                        if modStates.ESP then createEsp(plr) end
-                    end)
-                end)
-            else
-                for _, plr in pairs(game.Players:GetPlayers()) do
-                    removeEsp(plr)
-                end
-            end
-        end}
-    }
+    ModsTab:CreateSlider("FOV", 50, 200, 100, function(value)
+        fov = value
+    end)
 
     local ScriptsTab = Window:CreateTab("Scripts")
-    local scriptEditor = Instance.new("TextBox")
-    scriptEditor.Name = "ScriptEditor"
-    scriptEditor.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
-    scriptEditor.BorderSizePixel = 0
-    scriptEditor.Position = UDim2.new(0, 5, 0, 5)
-    scriptEditor.Size = UDim2.new(1, -10, 0, 200)
-    scriptEditor.Font = Enum.Font.Code
-    scriptEditor.Text = "-- Enter Lua code here (e.g., print('Hello'))"
-    scriptEditor.TextColor3 = Color3.fromRGB(200, 200, 200)
-    scriptEditor.TextSize = 14
-    scriptEditor.TextWrapped = true
-    scriptEditor.MultiLine = true
-    local EditorCorner = Instance.new("UICorner")
-    EditorCorner.CornerRadius = UDim.new(0, 4)
-    EditorCorner.Parent = scriptEditor
+    local scriptInput = Instance.new("TextBox")
+    scriptInput.Name = "ScriptInput"
+    scriptInput.Parent = ScriptsTab.Frame
+    scriptInput.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+    scriptInput.BorderSizePixel = 0
+    scriptInput.Position = UDim2.new(0, 5, 0, 5)
+    scriptInput.Size = UDim2.new(1, -10, 0, 200)
+    scriptInput.Font = Enum.Font.Code
+    scriptInput.Text = "-- Enter script URL or code here (e.g., https://raw.githubusercontent.com/KeelScripts/Keel6586/main/Lua)"
+    scriptInput.TextColor3 = Color3.fromRGB(200, 200, 200)
+    scriptInput.TextSize = 14
+    scriptInput.TextWrapped = true
+    scriptInput.MultiLine = true
+    local InputCorner = Instance.new("UICorner")
+    InputCorner.CornerRadius = UDim.new(0, 4)
+    InputCorner.Parent = scriptInput
 
     local ExecuteButton = Instance.new("TextButton")
     ExecuteButton.Name = "ExecuteButton"
+    ExecuteButton.Parent = ScriptsTab.Frame
     ExecuteButton.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
     ExecuteButton.Size = UDim2.new(0, 100, 0, 30)
     ExecuteButton.Position = UDim2.new(0, 10, 0, 210)
@@ -439,21 +411,28 @@ function library:CreateWindow(title)
     ButtonCorner.CornerRadius = UDim.new(0, 4)
     ButtonCorner.Parent = ExecuteButton
 
-    ScriptsTab.Content = {
-        {"Execute Script", function()
+    ExecuteButton.MouseButton1Click:Connect(function()
+        local scriptContent = scriptInput.Text
+        if scriptContent:match("http") then
             local success, error = pcall(function()
-                loadstring(scriptEditor.Text)()
+                loadstring(game:HttpGet(scriptContent))()
             end)
             if not success then
                 warn("Script Error: " .. error)
             end
-        end}
-    }
+        else
+            local success, error = pcall(function()
+                loadstring(scriptContent)()
+            end)
+            if not success then
+                warn("Script Error: " .. error)
+            end
+        end
+    end)
 
     Window:CreateTab("Random")
     Window:CreateTab("Plus")
 
-    UpdateTabs()
     return Window
 end
 
